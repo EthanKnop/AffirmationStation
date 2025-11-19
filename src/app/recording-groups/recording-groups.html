@@ -1,0 +1,29 @@
+<!-- Header -->
+<div class="recording-groups-header">
+    <h2>Recording Groups</h2>
+    @if (!showAddGroup) {
+        <button (click)="toggleAddGroup()">Add Group</button>
+    }
+</div>
+
+<!-- Add Group Form -->
+@if (showAddGroup) {
+    <div class="add-recording-group card">
+        <input type="text" placeholder="Group Name" #newRecordingGroupNameInput>
+        <button (click)="addGroup(newRecordingGroupNameInput.value)">Add</button>
+        <button (click)="toggleAddGroup()">Cancel</button>
+    </div>
+}
+
+<!-- Recording Groups List -->
+@for (item of groups; track item) {
+    <div class="recording-group card">
+        <div class="header">
+            <b>{{ item.name }}</b>
+            <!-- Edit -->
+            <button (click)="editGroup(item)">Edit</button>
+        </div>
+    </div>
+} @empty {
+    <!-- <b>No items found.</b> -->
+}

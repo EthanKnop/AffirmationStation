@@ -1,0 +1,53 @@
+@if (recordingGroup; as group) {
+<div class="recording-group-manager card">
+	<h3>{{ group.name }}</h3>
+
+	<div class="rec-controls">
+		@if (!canRecord) {
+			<div class="error">Recording not supported in this browser.</div>
+		} @else {
+			@if (!isRecording) {
+				<button (click)="startRecording()">Start Recording</button>
+			} @else {
+				<button class="stop" (click)="stopRecording()">Stop</button>
+				<button class="cancel" (click)="cancelRecording()">Cancel</button>
+				<span class="timer">{{ formatElapsed(elapsedMs) }}</span>
+			}
+		}
+	</div>
+
+	@if (group.recordings.length > 0) {
+	<div class="recordings-list">
+		<h4>Recordings ({{ group.recordings.length }})</h4>
+		<ul>
+			@for (rec of group.recordings; track rec.id) {
+			<li>
+				<div class="rec-row">
+					@if (editingRecordingId === rec.id) {
+						<input type="text"
+									 [value]="editingRecordingName"
+									 (input)="editingRecordingName = $any($event.target).value"
+									 (blur)="commitEditing(rec)"
+									 (keydown.enter)="commitEditing(rec)"
+									 (keydown.escape)="cancelEditing()"
+									 autofocus>
+					} @else {
+						<span class="rec-name" (click)="startEditing(rec)">{{ rec.name }}</span>
+					}
+					<small>{{ formatElapsed(rec.durationMs) }}</small>
+					<audio [src]="rec.url" controls></audio>
+					<button class="delete" (click)="deleteRecording(rec)">Delete</button>
+				</div>
+			</li>
+			} @empty {
+				<li>No recordings yet.</li>
+			}
+		</ul>
+	</div>
+	}
+
+	@if (error) {
+		<div class="error">{{ error }}</div>
+	}
+</div>
+}

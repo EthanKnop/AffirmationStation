@@ -1,0 +1,39 @@
+.recording-groups-header {
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-recording-group {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: space-between;
+
+    input {
+        flex-grow: 1;
+        padding: 8px;
+        border-radius: 4px;
+        font-size: 1rem;
+        border: none;
+        outline: none;
+        min-width: 0;
+    }
+}
+
+.recording-group {
+    margin-top: 12px;
+    padding: 12px;
+    background-color: #505050;
+    border-radius: 8px;
+    color: white;
+
+    .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
