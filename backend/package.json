@@ -2,7 +2,7 @@
   "name": "affirmationstation-backend",
   "version": "1.0.0",
   "description": "Backend API for AffirmationStation",
-  "main": "server.ts",
+  "main": "index.js",
   "scripts": {
     "ng": "ng",
     "start": "bun server.ts"
