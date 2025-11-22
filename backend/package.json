@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "ng": "ng",
-    "start": "bun server.ts"
+    "start": "bun server.ts",
+    "postinstall": "chmod +x node_modules/.bin/bun || true"
   },
   "author": "",
   "license": "MIT",
